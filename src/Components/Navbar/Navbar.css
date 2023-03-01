@@ -22,8 +22,9 @@ nav .s1 {
     align-items: center;
 }
 
-nav img {
-    width: 150px;
+nav .logo {
+    width: 180px;
+    padding-top: 20px;
 }
 
 nav .searchbar {
@@ -109,3 +110,6 @@ nav .s2 a {
 nav .s2 a:hover {
     color: var(--col1);
 }
+
+
+/* Swiper css */
