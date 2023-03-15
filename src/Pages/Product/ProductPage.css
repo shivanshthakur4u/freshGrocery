@@ -252,9 +252,10 @@
 
 .productpage .reviewhead {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     margin: 20px 0px;
+    position: relative;
 }
 
 .productpage .reviewhead p {
@@ -262,6 +263,8 @@
     padding: 0px;
     font-size: 18px;
     color: var(--col1);
+    position: absolute;
+    left: 0px;
 }
 
 .productpage .reviewhead span {
@@ -280,4 +283,61 @@
     width: 70%;
     max-width: 900px;
     align-self: center;
+}
+
+.productpage .rating {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0px;
+}
+
+.productpage .rating .starinactive {
+    color: lightgray;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.productpage .rating .staractive {
+    color: goldenrod;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    fill: gold;
+}
+
+.productpage .rating .starinactive:hover {
+    color: var(--col1);
+}
+
+.productpage .rating1 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 8px;
+}
+
+.productpage .rating1 .starinactive {
+    color: lightgray;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.productpage .rating1 .staractive {
+    color: goldenrod;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    fill: gold;
+}
+
+.productpage .rating1 .starinactive:hover {
+    color: var(--col1);
+}
+
+.productpage .slidercont {
+    width: 100%;
+    padding: 20px;
 }
