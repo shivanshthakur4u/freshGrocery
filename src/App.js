@@ -6,12 +6,16 @@ import './App.css'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ProductPage from './Pages/Product/ProductPage'
+import About from './Pages/Extras/About'
+import Contact from './Pages/Extras/Contact'
 function App() {
   return (
   <BrowserRouter>
     <Routes>
       <Route path='/' element={<Homepage/>}/>
       <Route path='/home' element={<Homepage/>}/>
+      <Route path='/about' element={<About/>}/>
+      <Route path='/contact' element={<Contact/>}/>
       <Route path='/product/:prodid' element={<ProductPage/>}/>
       <Route path='*' element={<Notfound/>}/>
     </Routes>

@@ -9,7 +9,7 @@ import ProductSidebar from '../Components/Products/ProductSidebar'
 const Homepage = () => {
   return (
   <div>
-    <Navbar/>
+    <Navbar page="home"/>
     <Bannerslider />
     <HomeCategories />
     <ProductSidebar />
