@@ -26,7 +26,7 @@ const Forgot = () => {
                 <input type={'password'} id="cpassword" />
             </div>
            </div>
-            <Link to={'/forgot'} className="stylenone"><p>Want to try login agin ?</p></Link>
+            <Link to={'/login'} className="stylenone"><p>Want to try login again ?</p></Link>
             <button className='btn'>Verify</button>
         </form>
     </div>

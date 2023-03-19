@@ -36,7 +36,7 @@ const Register = () => {
                 <input type={'password'} id="cpassword" />
             </div>
            </div>
-            <Link to={'/forgot'} className="stylenone"><p>Already have an Account ?</p></Link>
+            <Link to={'/login'} className="stylenone"><p>Already have an Account ?</p></Link>
             <button className='btn'>Signup</button>
             <h2 className='or'>OR</h2>
             <Link to={'/register'}  className="stylenone"><button className='btn'> Login</button></Link>
