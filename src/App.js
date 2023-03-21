@@ -11,6 +11,7 @@ import Contact from './Pages/Extras/Contact'
 import Login from './Pages/Auth/Login'
 import Register from './Pages/Auth/Register'
 import Forgot from './Pages/Auth/Forgot'
+import Cart from './Pages/Cart/Cart'
 function App() {
   return (
   <BrowserRouter>
@@ -23,6 +24,7 @@ function App() {
       <Route path='/login' element={<Login/>}/>
       <Route path='/register' element={<Register/>}/>
       <Route path='/forgot' element={<Forgot/>}/>
+      <Route path='/cart' element={<Cart/>}/>
       <Route path='*' element={<Notfound/>}/>
     </Routes>
   </BrowserRouter>

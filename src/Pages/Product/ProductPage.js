@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { json, Link } from "react-router-dom";
 import img1 from "../../Assets/Images/apple.png";
 import img2 from "../../Assets/Images/capsicum.png";
 import img3 from "../../Assets/Images/chillie.png";
@@ -10,7 +10,7 @@ import "../../../src/App.css";
 import Footer1 from "../../Components/Footer/Footer1";
 import Footer2 from "../../Components/Footer/Footer2";
 import ProductSlider from "./ProductSlider";
-
+import { ToastContainer, toast } from 'react-toastify';
 const ProductPage = () => {
   //   const { prodid } = useParams();
   const [imageset, setimageset] = React.useState(null);
@@ -18,6 +18,7 @@ const ProductPage = () => {
   const [activeimg, setactiveimg] = React.useState({});
   const [count, setcount] = React.useState(1);
   const [showreview, setShowreview] = React.useState(false);
+  const [reloadNavbar, setreloadNavbar]= React.useState(false);
 
   const getproductdatabyid = async () => {
     let temp = {
@@ -191,6 +192,48 @@ const ProductPage = () => {
     },
   ]
 
+  const addtoCart=()=>{
+    let cart = JSON.parse(localStorage.getItem('cart'))
+
+    if(cart){
+      
+      let itemincart = cart.find(item=>item.productdata.ProductId===productdata.ProductId)
+      if (itemincart){
+        cart = cart.map(item=>{
+          if(item.productdata.ProductId ===productdata.ProductId){
+            return {
+              ...item,
+              quantity:item.quantity+count
+            }
+          }
+          else{
+            return item
+          }
+        })
+        localStorage.setItem('cart',JSON.stringify(cart))
+      }
+      else{
+        cart =[
+          ...cart,
+          {
+            productdata,
+            quantity:count
+          }
+        ]
+        localStorage.setItem('cart',JSON.stringify(cart))
+      }
+    }
+    else{
+      cart=[{
+        productdata,
+        quantity:count,
+      }]
+      localStorage.setItem('cart',JSON.stringify(cart))
+    }
+    toast.success('Item added to cart')
+    setreloadNavbar(!reloadNavbar);
+  }
+
   return (
     <div className="productpage">
       {/* <h1>Product id is - {prodid}</h1>
@@ -198,7 +241,7 @@ const ProductPage = () => {
             {JSON.stringify(productdata)}
         </p> */}
 
-      <Navbar />
+      <Navbar reloadNavbar={reloadNavbar} />
 
       <div className="pc1">
         <Link to="/">
@@ -280,7 +323,7 @@ const ProductPage = () => {
           <div className="btncont">
             <button
               onClick={() => {
-                alert("Added to cart");
+               addtoCart();
               }}
             >
               Add to Cart

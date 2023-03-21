@@ -4,9 +4,51 @@ import './ProductCard.css'
 const ProductCard = ({data}) => {
 
   const [show, setshow]=useState(false);
-  const [qty, setqty]=useState(1);
-  const getproductid=()=>{
-    console.log(data.id)
+  const [count, setcount]=useState(1);
+  // const getproductid=()=>{
+  //   console.log(data.id)
+  // }
+  const addtoCart=()=>{
+    let cart = JSON.parse(localStorage.getItem('cart'))
+    let productdata=data
+    if(cart){
+      
+      let itemincart = cart.find(item=>item.productdata.ProductId===productdata.ProductId)
+      if (itemincart){
+        cart = cart.map(item=>{
+          if(item.productdata.ProductId ===productdata.ProductId){
+            return {
+              ...item,
+              quantity:item.quantity+count
+            }
+          }
+          else{
+            return item
+          }
+        })
+        localStorage.setItem('cart',JSON.stringify(cart))
+      }
+      else{
+        cart =[
+          ...cart,
+          {
+            productdata,
+            quantity:count
+          }
+        ]
+        localStorage.setItem('cart',JSON.stringify(cart))
+      }
+    }
+    else{
+      cart=[{
+        productdata,
+        quantity:count,
+      }]
+      localStorage.setItem('cart',JSON.stringify(cart))
+    }
+    window.location.reload()
+    // toast.success('Item added to cart')
+    // setreloadNavbar(!reloadNavbar);
   }
   return (
     <div className='product'>
@@ -29,15 +71,16 @@ const ProductCard = ({data}) => {
         <div className='addbtn'>
           <div className='qty'>
             <button onClick={()=>{
-              qty >1 ? setqty(qty-1):alert('item must be at least 1')
+              count >1 ? setcount(count-1):alert('item must be at least 1')
             }}>-</button>
-            <p>{qty}</p>
+            <p>{count}</p>
             <button onClick={()=>{
-              setqty(qty+1)
+              setcount(count+1)
             }}>+</button>
           </div>
           <button className='addtocart' onClick={()=>{
             setshow(false)
+            addtoCart()
           }}>Add to Cart</button>
         </div>
         :<div className='addbtn'>
